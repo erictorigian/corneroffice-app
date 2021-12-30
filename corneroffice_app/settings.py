@@ -15,7 +15,7 @@ SECRET_KEY = 'django-insecure-z-nxcfjw!h-bn!pr80%9ae4l4su$1ke_$_5!7@5df-n)u(y0m_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['corneroffice-app.herokuapp.com', '127,0.0.1']
+ALLOWED_HOSTS = ['corneroffice-app.herokuapp.com', '127,0.0.1', 'localhost']
 
 
 # Application definition
@@ -66,11 +66,14 @@ WSGI_APPLICATION = 'corneroffice_app.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd41645b4p6o999',
+        'HOST': 'ec2-52-45-211-119.compute-1.amazonaws.com',
+        'PORT': 5432,
+        'USER': 'dopwuigxjwffro',
+        'PASSWORD': 'b8523eb8860c97cc1b9fdace41ae3cd6edd780804b2f44152c548de5c81422b4'
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
