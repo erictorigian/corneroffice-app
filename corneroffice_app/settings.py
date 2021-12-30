@@ -15,7 +15,7 @@ SECRET_KEY = 'django-insecure-z-nxcfjw!h-bn!pr80%9ae4l4su$1ke_$_5!7@5df-n)u(y0m_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['corneroffice-app.herokuapp.com', '127,0.0.1']
 
 
 # Application definition
