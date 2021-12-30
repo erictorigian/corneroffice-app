@@ -1,0 +1,1 @@
+web: gunicorn corneroffice_app.wsgi
