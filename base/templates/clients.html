@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+<div class="container">
+    <h1>All Clients</h1>
+</div>
+
+
+{% for client in clients %} 
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">{{client}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+      <p class="card-text">Client Details.</p>
+      <a href="#" class="card-link">Phone Log</a>
+      <a href="#" class="card-link">Interactions</a>
+    </div>
+  </div>
+
+
+{% endfor %}
+{% endblock %}
