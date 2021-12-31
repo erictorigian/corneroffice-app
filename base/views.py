@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Client
 
 def home(request):
     context = {}
@@ -6,7 +7,7 @@ def home(request):
 
 
 def clients(request):
-    clients = {"Safran Cabin", "Connections", "Stellanis", "Other co"}
+    clients = Client.objects.all()
 
     context = {'clients': clients }
     return render(request, 'clients.html', context)

@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class Clients(models.Model):
+class Client(models.Model):
     contact = models.CharField(max_length = 200)
     company = models.CharField(max_length = 200)
     source = models.CharField(max_length = 200)
@@ -15,4 +15,4 @@ class Clients(models.Model):
         ordering = ['-updated', '-created']
 
     def __str__(self):
-        return self.name
+        return self.contact

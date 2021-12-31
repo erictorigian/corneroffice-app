@@ -32,7 +32,7 @@
           <a class="nav-link" href="#">{{ user }}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+          <a class="nav-link" href="#">Logout</a>
         </li>
         {% else %}
         <li class="nav-item">
@@ -40,8 +40,6 @@
         </li>
         {% endif %}
       </ul>
-      <form class="form-inline my-2 my-lg-0" action="{% url 'home' %}">
-        <input class="form-control mr-sm-2" type="text" name="q" placeholder="Search">
-      </form>
+     
     </div>
   </nav>
