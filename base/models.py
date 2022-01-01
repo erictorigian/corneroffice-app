@@ -21,3 +21,18 @@ class Client(models.Model):
 
     def __str__(self):
         return self.contact
+
+class Guest(models.Model):
+    name = models.CharField(max_length=200)
+    topic = models.TextField()
+    show_date = models.DateField()
+    source = models.CharField(max_length=200)
+    comments = models.TextField()
+    updated = models.DateTimeField(auto_now=True)
+    created =  models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        ordering = ['-updated', '-created']
+
+    def __str__(self):
+        return self.name

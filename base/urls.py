@@ -9,4 +9,6 @@ urlpatterns = [
     path('delete_client/<client_id>', views.delete_client, name="delete-client"),
     path('update_client/<client_id>', views.update_client, name="update-client"),
     path('client/<str:client_id>', views.client, name="client"),
-]
+    path('guests', views.guests, name="guests"),
+    path('new_guest', views.new_guest, name="new-guest"),
+] 

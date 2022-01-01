@@ -51,3 +51,24 @@ def update_client(request, client_id):
         return redirect('clients')
     context = {'client': client, 'form': form}
     return render(request, 'update_client.html', context)
+
+#Guests
+def guests(request):
+
+    context = {}
+    return render(request, 'guests.html', context)
+
+def new_guest(request):
+    submitted=False
+    if request.method == 'POST':
+        form = ClientForm(request.POST)
+        if form.is_valid:
+            form.save()
+            messages.success(request, ("Client has been saved"))
+            return redirect(clients)
+    else:
+        form = ClientForm
+        if 'submitted' in request.GET:
+            submitted=True
+    context = {'form': form, 'submitted': submitted}
+    return render(request, 'new_guest.html', context)
