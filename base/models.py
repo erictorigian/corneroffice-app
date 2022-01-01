@@ -1,11 +1,16 @@
 from django.db import models
 
+STATUS_CHOICES = (
+    ('active', 'ACTIVE'),
+    ('quoted', 'QUOTED'),
+    ('prospect', 'PROSPECT'),
+)
 # Create your models here.
 class Client(models.Model):
     contact = models.CharField(max_length = 200)
     company = models.CharField(max_length = 200)
     source = models.CharField(max_length = 200)
-    status = models.CharField(max_length = 200)
+    status = models.CharField(max_length = 10, choices=STATUS_CHOICES, default="prospect")
     comments = models.TextField()
     #auto time fields
     updated = models.DateTimeField(auto_now=True)

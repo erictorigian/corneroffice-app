@@ -3,20 +3,95 @@
 {% block content %} 
 <div class="container">
     <h1>All Clients</h1>
+    <a href="{% url 'new-client' %}" 
+        class="btn btn-outline-primary btn-sm float-right">New Customer</a></h4>
+<br/>
+
+<h4>Active Clients (with placements)</h4>
+<div class="table-responsive-sm">
+  <table class="table table-hover table-striped table-bordered">
+    <thead>
+      <th>Contact</th>
+      <th>Company</th>
+      <th>Source</th>
+      <th>Last Update</th>
+      <th>Created</th>
+    </thead>
+  
+    {% now "Y-m-d" as todays_date %} 
+    {% for client in clients %} 
+  
+    {% if client.status == 'active' %} 
+    <tr>
+      <td><a href="{% url 'client' client.id %}">{{ client.contact }}</td></a>
+      <td>{{ client.company }}</td>
+      <td>{{ client.source }}</td>
+      <td>{{ client.updated }}</td>
+      <td>{{ client.created }}</td>
+    </tr>
+    {% endif %} 
+      {% endfor %}
+  </table>
+  </div>
+  <br/>
+
+<h4>Quoted Clients (discussing placements)</h4>
+<div class="table-responsive-sm">
+<table class="table table-hover table-striped table-bordered">
+  <thead>
+    <th>Contact</th>
+    <th>Company</th>
+    <th>Source</th>
+    <th>Last Update</th>
+    <th>Created</th>
+  </thead>
+
+  {% now "Y-m-d" as todays_date %} 
+  {% for client in clients %} 
+
+  {% if client.status == 'quoted' %} 
+  <tr>
+    <td><a href="{% url 'client' client.id %}">{{ client.contact }}</td></a>
+    <td>{{ client.company }}</td>
+    <td>{{ client.source }}</td>
+    <td>{{ client.updated }}</td>
+    <td>{{ client.created }}</td>
+  </tr>
+  {% endif %} 
+    {% endfor %}
+</table>
+</div>
+<br/>
+<h4>Prospects</h4>
+<div class="table-responsive-sm">
+<table class="table table-hover table-striped table-bordered">
+  <thead>
+    <th>Contact</th>
+    <th>Company</th>
+    <th>Source</th>
+    <th>Last Update</th>
+    <th>Created</th>
+  </thead>
+
+  {% now "Y-m-d" as todays_date %} 
+  {% for client in clients %} 
+
+  {% if client.status == 'prospect' %} 
+  <tr>
+    <td><a href="{% url 'client' client.id %}">{{ client.contact }}</td></a>
+    <td>{{ client.company }}</td>
+    <td>{{ client.source }}</td>
+    <td>{{ client.updated }}</td>
+    <td>{{ client.created }}</td>
+  </tr>
+  {% endif %} 
+    {% endfor %}
+</table>
+</div>
+<br/>
+
+
 </div>
 
 
-{% for client in clients %} 
-<div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title">{{client.contact}}</h5>
-      <h6 class="card-subtitle mb-2 text-muted">{{client.company}}</h6>
-      <p class="card-text">{{client.comments}} </p>
-      <a href="#" class="card-link">Phone Log</a>
-      <a href="#" class="card-link">Interactions</a>
-    </div>
-  </div>
-
-
-{% endfor %}
 {% endblock %}
