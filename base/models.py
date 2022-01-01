@@ -25,7 +25,7 @@ class Client(models.Model):
 class Guest(models.Model):
     name = models.CharField(max_length=200)
     topic = models.TextField()
-    show_date = models.DateField()
+    show_date = models.DateField(null=True, blank=True)
     source = models.CharField(max_length=200)
     comments = models.TextField()
     updated = models.DateTimeField(auto_now=True)

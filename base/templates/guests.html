@@ -2,9 +2,29 @@
 
 {% block content %} 
 <div class="container">
-    <h1>All Clients</h1>
+    <h4>Podcast Guests ({{ guest_count }})
     <a href="{% url 'new-guest' %}" 
         class="btn btn-outline-primary btn-sm float-right">New Guest</a></h4>
 <br/>
+</div>
+<div class="table-responsive-sm">
+    <table class="table table-hover table-striped table-bordered">
+      <thead>
+        <th>Name</th>
+        <th>Topic</th>
+        <th>Show Date</th>
+        <th>Source</th>
+    </thead>
+
+    {% for guest in guests %} 
+    <tr>
+        <td><a href="{% url 'guest' guest.id %}">{{ guest.name }}</a></td>
+        <td>{{ guest.topic }}</td>
+        <td>{{ guest.show_date }}</td>
+        <td>{{ guest.source }}</td>
+    </tr>
+    {% endfor %}
+</table>
+</div>
 
 {% endblock %} 
