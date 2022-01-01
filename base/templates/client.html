@@ -1,10 +1,11 @@
 {% extends 'base.html' %}  
 
 {% block content %} 
-<h4>Client Details</h4>
 <a href="{% url 'clients' %}" 
-        class="btn btn-outline-primary btn-sm float-right">All Clients</a></h4>
+        class="btn btn-outline-primary btn-sm float-right">All Clients</a>
 <br/>
+<br/>
+
 <div class="card">
     <div class="card-body">
       <h5 class="card-title"><a href="{% url 'client' client.id %}">{{client.contact}}</h5></a>
