@@ -1,20 +1,23 @@
 {% extends 'base.html' %} 
 
 {% block content %} 
-<h2>Register</h2>
+<h2 class="text-center">Register</h2>
+<br/>
 
-<form method="POST" action"{% url 'register' %}>
-    {% csrf_token %} 
+<div class="col-md-6 offset-md-3">
+    <form method="POST" action"{% url 'register' %}>
+        {% csrf_token %} 
 
-    {% if form.errors %} 
-        <p>Your form contains errors...</p>
-    {% endif %} 
+        {% if form.errors %} 
+            <p>Your form contains errors...</p>
+        {% endif %} 
 
-    {{ form.as_p }}
+        {{ form.as_p }}
 
-<input type="submit" value="Register" class="btn btn-secondary">
+    <input type="submit" value="Register" class="btn btn-secondary">
 
-</form>
+    </form>
+</div>
 
 {% endblock %} 
 
