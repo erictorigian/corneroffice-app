@@ -2,9 +2,10 @@ from typing import ContextManager
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import Client, Guest
-from .forms import ClientForm, GuestForm
+from .forms import ClientForm, GuestForm, SignUpForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
 
 
 def home(request):
@@ -130,3 +131,21 @@ def logout_user(request):
     logout(request)
     messages.success(request, ("You have been logged out"))
     return redirect('home')
+
+def register_user(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            messages.success(request, ("You have been registgered and logged in"))
+            return redirect('home')
+    else:
+        form = SignUpForm()
+
+    context = {'form': form}
+    return render(request, 'authenticate/register.html', context)
