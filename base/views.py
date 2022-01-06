@@ -5,7 +5,7 @@ from .models import Client, Guest
 from .forms import ClientForm, GuestForm, SignUpForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 
 def home(request):
@@ -149,3 +149,21 @@ def register_user(request):
 
     context = {'form': form}
     return render(request, 'authenticate/register.html', context)
+
+def edit_profile(request):
+    if request.method == 'POST':
+        form = UserChangeForm(request.POST, instance=request.user)
+
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            messages.success(request, ("You have been registgered and logged in"))
+            return redirect('home')
+    else:
+        form = UserChangeForm(instance=request.user)
+
+    context = {'form': form}
+    return render(request, 'authenticate/edit_profile.html', context)

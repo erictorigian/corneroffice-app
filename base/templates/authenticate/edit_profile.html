@@ -1,7 +1,7 @@
 {% extends 'base.html' %} 
 
 {% block content %} 
-<h2 class="text-center">Register</h2>
+<h2 class="text-center">Edit Profile</h2>
 <br/>
 
 <div class="col-md-6 offset-md-3">
@@ -11,7 +11,7 @@
         {% if form.errors %} 
             <p>Your form contains errors...</p>
             {% for field in form %} 
-                {$ if field.errors %} 
+                {% if field.errors %} 
                     {{field.errors}}
                 {% endif %}
             {% endfor %} 

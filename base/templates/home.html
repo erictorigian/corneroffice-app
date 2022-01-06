@@ -1,16 +1,37 @@
 {% extends 'base.html' %}  
 
 {% block content %}
-
+<style>.dashboard-box {
+   border-radius: 25px;
+  background: #338bf0;
+  padding: 20px; 
+  margin-right: 20px;
+  margin-bottom: 20px;
+  width: 200px;
+  height: 150px; 
+  color: white;
+}</style>
 {% if user.is_authenticated %} 
-<div class="card">
-    <h5 class="card-header">Greatings {{ user.first_name}} {{ user.last_name}}</h5>
-    <div class="card-body">
-      <h5 class="card-title">Dashboard:</h5>
-      <p class="card-text">Clients  -  {{ client_count }}</p>
-      <p class="card-text">Podcast guests - {{ guest_count}}</p>
+<div>
+    <h4>Greatings {{ user.first_name}} {{ user.last_name}}</h4>
+    <h5>DASHBOARD:</h5>
+    <br/>
+   </div>
 
-    </div>
+  <div class="container">
+    <div class="row">
+      <div class="dashboard-box col-md-3">
+        <h1 class="text-center">{{ client_count}}</h1><br/>
+        <h5><strong>Clients</strong></h5>
+      </div>
+      <div class="dashboard-box col-md-3">
+        <h1 class="text-center">{{guest_count}}</h1><br/>
+        <h5><strong>Podcast Guests</strong></h5>
+      </div>
+      <div class="dashboard-box col-md-3">
+        Other
+      </div>    
+      </div>
   </div>
  
 {% else %}
