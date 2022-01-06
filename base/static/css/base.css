@@ -1,0 +1,11 @@
+.dashboard-box {
+    border-radius: 25px;
+   background: #338bf0;
+   padding: 20px; 
+   margin-right: 20px;
+   margin-bottom: 20px;
+   width: 200px;
+   height: 150px; 
+   color: white;
+}
+
