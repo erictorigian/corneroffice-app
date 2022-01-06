@@ -3,13 +3,10 @@
 {% block content %}
 
 {% if user.is_authenticated %} 
-<div>
-    <h4>Greatings {{ user.first_name}} {{ user.last_name}}</h4>
-    <h5>DASHBOARD:</h5>
-    <br/>
-   </div>
-
+<div class="container">
+  <div class="jumbotron jumbotron-fluid">
   <div class="container">
+    <h4>DASHBOARD</h4>
     <div class="row">
       <div class="dashboard-box col-md-3">
         <h1 class="text-center">{{ client_count}}</h1><br/>
@@ -24,6 +21,44 @@
       </div>    
       </div>
   </div>
+  </div>
+
+  <div class="jumbotron jumbtron-fluid">
+  <br/>
+  <h4>Podcast show log:</h4>
+  <table class="table table-light table-striped table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">Episode #</th>
+        <th scope="col">Air Date</th>
+        <th scope="col">Guest</th>
+        <th scope="col">Topic</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td></td>
+        <td> </td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  </div>
+
  
 {% else %}
 <div class="card text-center">
@@ -41,5 +76,4 @@
   </div>
 {% endif %} 
 
-  
   {% endblock %}

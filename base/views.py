@@ -2,10 +2,10 @@ from typing import ContextManager
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import Client, Guest
-from .forms import ClientForm, GuestForm, SignUpForm
-from django.contrib.auth import authenticate, login, logout
+from .forms import ClientForm, EditProfileForm, GuestForm, SignUpForm
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 
 
 def home(request):
@@ -127,6 +127,7 @@ def login_user(request):
         context = {}
         return render(request, 'authenticate/login.html', context)
 
+@login_required
 def logout_user(request):
     logout(request)
     messages.success(request, ("You have been logged out"))
@@ -150,20 +151,34 @@ def register_user(request):
     context = {'form': form}
     return render(request, 'authenticate/register.html', context)
 
+@login_required
 def edit_profile(request):
     if request.method == 'POST':
-        form = UserChangeForm(request.POST, instance=request.user)
+        form = EditProfileForm(request.POST, instance=request.user)
 
         if form.is_valid():
             form.save()
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password1']
-            user = authenticate(username=username, password=password)
-            login(request, user)
-            messages.success(request, ("You have been registgered and logged in"))
+            messages.success(request, ("You have edited your profile"))
             return redirect('home')
     else:
-        form = UserChangeForm(instance=request.user)
+        form = EditProfileForm(instance=request.user)
 
     context = {'form': form}
     return render(request, 'authenticate/edit_profile.html', context)
+
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(data=request.POST, user=request.user)
+
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+            messages.success(request, ("You have changed your password"))
+            return redirect('home')
+    else:
+        form = PasswordChangeForm(user=request.user)
+
+
+    context = {'form': form} 
+    return render(request, 'authenticate/change_password.html', context)
