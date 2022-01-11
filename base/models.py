@@ -24,6 +24,8 @@ class Client(models.Model):
 
 class Guest(models.Model):
     name = models.CharField(max_length=200)
+    company = models.CharField(max_length=200)
+    email = models.EmailField(null=True, blank=True)
     topic = models.TextField()
     show_date = models.DateField(null=True, blank=True)
     source = models.CharField(max_length=200)

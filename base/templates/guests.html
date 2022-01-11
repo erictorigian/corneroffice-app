@@ -8,9 +8,11 @@
 <br/>
 </div>
 <div class="table-responsive-sm">
-    <table class="table table-hover table-striped table-bordered">
+    <table class="table table-sm table-hover table-striped table-bordered">
       <thead>
         <th>Name</th>
+        <th>Company</th>
+        <th>Email</th>
         <th>Topic</th>
         <th>Show Date</th>
         <th>Source</th>
@@ -19,6 +21,8 @@
     {% for guest in guests %} 
     <tr>
         <td><a href="{% url 'guest' guest.id %}">{{ guest.name }}</a></td>
+        <td>{{ guest.company }}</td>
+        <td>{{ guest.email }}</td>
         <td>{{ guest.topic }}</td>
         <td>{{ guest.show_date }}</td>
         <td>{{ guest.source }}</td>
