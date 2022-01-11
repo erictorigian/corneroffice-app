@@ -16,6 +16,7 @@
         <th>Topic</th>
         <th>Show Date</th>
         <th>Source</th>
+        <th>Sponsor</th>
     </thead>
 
     {% for guest in guests %} 
@@ -26,6 +27,7 @@
         <td>{{ guest.topic }}</td>
         <td>{{ guest.show_date }}</td>
         <td>{{ guest.source }}</td>
+        <td>{{ guest.sponsor }}</td>
     </tr>
     {% endfor %}
 </table>

@@ -28,7 +28,7 @@ class GuestForm(ModelForm):
         self.fields['comments'].widget.attrs['class'] = 'form-control'
         self.fields['name'].widget.attrs['placeholder'] = 'Name'
         self.fields['company'].widget.attrs['placeholder'] = 'Company'
-        self.fields['email'].widget.attrs['[placeholder]'] = 'Email'
+        self.fields['email'].widget.attrs['placeholder'] = 'Email'
         self.fields['topic'].widget.attrs['placeholder'] = 'Topics'
         self.fields['show_date'].widget.attrs['placeholder'] = 'Show Date'
         self.fields['source'].widget.attrs['placeholder'] = 'Source'

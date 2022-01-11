@@ -71,23 +71,6 @@ def guests(request):
     context = {'guests': guests, 'guest_count': guest_count}
     return render(request, 'guests.html', context)
 
-@login_required
-def new_guest(request):
-    submitted = False
-    if request.method == 'POST':
-        form = ClientForm(request.POST)
-        if form.is_valid:
-            guest = form.save(commit=False)
-            guest.sponsor = request.user.id
-            guest.save()
-            messages.success(request, ("Client has been saved"))
-            return redirect(clients)
-    else:
-        form = ClientForm
-        if 'submitted' in request.GET:
-            submitted = True
-    context = {'form': form, 'submitted': submitted}
-    return render(request, 'new_guest.html', context)
 
 @login_required
 def guest(request, guest_id):

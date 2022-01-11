@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 STATUS_CHOICES = (
     ('active', 'ACTIVE'),
@@ -30,7 +31,7 @@ class Guest(models.Model):
     show_date = models.DateField(null=True, blank=True)
     source = models.CharField(max_length=200)
     comments = models.TextField()
-    sponsor = models.IntegerField("Guest Sponsor",blank=False, default=1)
+    sponsor = models.ForeignKey(User, on_delete=models.CASCADE)
     updated = models.DateTimeField(auto_now=True)
     created =  models.DateTimeField(auto_now_add=True)
     
@@ -45,7 +46,7 @@ class Teacher(models.Model):
     last_name = models.CharField(max_length=100)
     email = models.EmailField()
     topics = models.CharField(max_length=200)
-    sponsor = models.IntegerField("Teacher Sponsor", blank=False)
+    sponsor = models.ForeignKey(User, on_delete=models.CASCADE)
     updated = models.DateTimeField(auto_now=True)
     created =  models.DateTimeField(auto_now_add=True)
     
