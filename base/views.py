@@ -77,7 +77,9 @@ def new_guest(request):
     if request.method == 'POST':
         form = ClientForm(request.POST)
         if form.is_valid:
-            form.save()
+            guest = form.save(commit=False)
+            guest.sponsor = request.user.id
+            guest.save()
             messages.success(request, ("Client has been saved"))
             return redirect(clients)
     else:

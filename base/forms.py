@@ -14,7 +14,32 @@ class ClientForm(ModelForm):
 class GuestForm(ModelForm):
     class Meta:
         model = Guest
-        fields = "__all__"
+        fields = ('name', 'company', 'email', 'topic', 'show_date', 'source', 'comments')
+    
+    def __init__(self, *args, **kwargs):
+        super(GuestForm, self).__init__(*args, **kwargs)        
+
+        self.fields['name'].widget.attrs['class'] = 'form-control'
+        self.fields['company'].widget.attrs['class'] = 'form-control'
+        self.fields['email'].widget.attrs['class'] = 'form-control'
+        self.fields['topic'].widget.attrs['class'] = 'form-control'
+        self.fields['show_date'].widget.attrs['class'] = 'form-control'
+        self.fields['source'].widget.attrs['class'] = 'form-control'
+        self.fields['comments'].widget.attrs['class'] = 'form-control'
+        self.fields['name'].widget.attrs['placeholder'] = 'Name'
+        self.fields['company'].widget.attrs['placeholder'] = 'Company'
+        self.fields['email'].widget.attrs['[placeholder]'] = 'Email'
+        self.fields['topic'].widget.attrs['placeholder'] = 'Topics'
+        self.fields['show_date'].widget.attrs['placeholder'] = 'Show Date'
+        self.fields['source'].widget.attrs['placeholder'] = 'Source'
+        self.fields['comments'].widget.attrs['placeholder'] = 'Comments'
+        self.fields['name'].label = ''
+        self.fields['company'].label = ''
+        self.fields['email'].label = ''
+        self.fields['topic'].label = ''
+        self.fields['show_date'].label = ''
+        self.fields['source'].label = ''
+        self.fields['comments'].label = ''
 
 
 class SignUpForm(UserCreationForm):
