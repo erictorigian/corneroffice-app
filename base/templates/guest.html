@@ -11,6 +11,10 @@
       <h5 class="card-title"><a href="#">{{guest.name}}</h5></a>
       <h6 class="card-subtitle mb-2 text-muted">Topic: {{guest.topic}}</h6>
       <p class="card-text"><h6>Comments:</h6>{{guest.comments}} </p>
+      <p class="card-text">Sponsor: {{ guest.sponsor }}</p>
+      <br/>
+      last update:  {{ guest.updated }}<br/>
+      Created: {{ guest.created }}<br/>
       <a href="#" class="btn btn-primary btn-sm">Update</a>
       <a href="#" class="btn btn-danger btn-sm float-right">Delete</a>
     </div>
