@@ -1,7 +1,7 @@
 from django import contrib, forms
 from django.db.models.base import Model
 from django.forms import ModelForm
-from .models import Client, Guest
+from .models import Client, Guest, Job
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 
@@ -9,6 +9,11 @@ from django.contrib.auth.models import User
 class ClientForm(ModelForm):
     class Meta:
         model = Client
+        fields = "__all__"
+
+class JobForm(ModelForm):
+    class Meta:
+        model = Job
         fields = "__all__"
 
 class GuestForm(ModelForm):

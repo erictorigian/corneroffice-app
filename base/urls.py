@@ -4,6 +4,11 @@ from . import views
 
 urlpatterns = [ 
     path('', views.home, name="home"),
+    path('jobsearch', views.jobsearch_home, name="jobsearch-home"),
+    path('jobs', views.jobs, name="jobs"),
+    path('new_job', views.new_job, name="new-job"),
+    path('job/<str:job_id>', views.job, name="job"),
+    path('delete_job/<job_id>', views.delete_job, name="delete-job"),
     path('clients', views.clients, name="clients"),
     path('new_client', views.new_client, name="new-client"),
     path('delete_client/<client_id>', views.delete_client, name="delete-client"),

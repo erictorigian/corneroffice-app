@@ -1,8 +1,8 @@
 from typing import ContextManager
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import Client, Guest
-from .forms import ClientForm, EditProfileForm, GuestForm, SignUpForm
+from .models import Client, Guest, Teacher, Job
+from .forms import ClientForm, EditProfileForm, GuestForm, SignUpForm, JobForm
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
@@ -169,3 +169,50 @@ def change_password(request):
 
     context = {'form': form} 
     return render(request, 'authenticate/change_password.html', context)
+
+@login_required
+def jobsearch_home(request):
+    job_count = Job.objects.all().count()
+    jobs = Job.objects.all()[0:5]
+
+    context = {'job_count': job_count, 'jobs': jobs}
+    return render(request, 'jobsearch.html', context)
+
+@login_required
+def jobs(request):
+    jobs = Job.objects.all()
+    job_count = Job.objects.all().count()
+
+    context = {'jobs': jobs, 'job_count': job_count}
+    return render(request, 'jobs.html', context)
+
+@login_required
+def new_job(request):
+    submitted = False
+    if request.method == 'POST':
+        form = JobForm(request.POST)
+        if form.is_valid:
+            job = form.save(commit=False)
+            job.save()
+            messages.success(request, ("Job has been saved"))
+            return redirect(jobs)
+    else:
+        form = JobForm
+        if 'submitted' in request.GET:
+            submitted = True
+    context = {'form': form, 'submitted': submitted}
+    return render(request, 'new_job.html', context)
+
+@login_required
+def job(request, job_id):
+    job = Job.objects.get(pk=job_id)
+    
+    context = {'job': job}
+    return render(request, 'job.html', context)
+
+@login_required
+def delete_job(request, job_id):
+    job = Job.objects.get(pk=job_id)
+    job.delete()
+    messages.success(request, ("Job has been deleted"))
+    return redirect(jobs)

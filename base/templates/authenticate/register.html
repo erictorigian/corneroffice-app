@@ -11,7 +11,7 @@
         {% if form.errors %} 
             <p>Your form contains errors...</p>
             {% for field in form %} 
-                {$ if field.errors %} 
+                {% if field.errors %} 
                     {{field.errors}}
                 {% endif %}
             {% endfor %} 

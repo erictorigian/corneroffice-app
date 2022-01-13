@@ -1,0 +1,93 @@
+{% extends 'base.html' %} 
+
+{% block content %} 
+
+<div class="container">
+<div class="jumbotron jumbotron-fluid">
+    <h4>My Job Search Dashboard</h4>
+
+    <div class="row">
+        <div class="row my-4">
+          <div class="col-12 col-md-6 col-lg-3 mb-4 mb-lg-0">
+              <div class="card">
+                  <h5 class="card-header">Jobs</h5>
+                  <div class="card-body">
+                    <h5 class="card-title">Number of open roles: {{job_count}}</h5>
+                    <p class="card-text"> </p>
+                    <p class="card-text text-success">
+                  </div>
+                </div>
+          </div>
+          <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
+            <div class="card">
+                <h5 class="card-header">Recruiters</h5>
+                <div class="card-body">
+                  <h5 class="card-title">0 Active</h5>
+                  <p class="card-text"></p>
+                  <p class="card-text text-success">2022 Year to date</p>
+                </div>
+              </div>
+        </div>
+        <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
+            <div class="card">
+                <h5 class="card-header">Interviews</h5>
+                <div class="card-body">
+                  <h5 class="card-title">0</h5>
+                  <p class="card-text"></p>
+                  <p class="card-text text-success"></p>
+                </div>
+              </div>
+        </div>
+        <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
+            <div class="card">
+                <h5 class="card-header">Closed Roles</h5>
+                <div class="card-body">
+                  <h5 class="card-title">1</h5>
+                  <p class="card-text"></p>
+                  <p class="card-text text-success"></p>
+                </div>
+              </div>
+        </div>
+      </div>    
+      </div>
+</div>
+<div class="row">
+    <div class="col-12 col-xl-12 mb-12 mb-lg-0">
+        <div class="card">
+            <h5 class="card-header">Last 5 Roles</h5>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Role</th>
+                            <th scope="col">Company</th>
+                            <th scope="col">Location</th>
+                            <th scope="col">Recuriter</th>
+                            <th scope="col">Agency</th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+
+                            {% for job in jobs %}
+
+                          <tr>
+                            <th scope="row">{{ job.role }}</th>
+                            <td>{{ job.company }}</td>
+                            <td>{{ job.location }}</td>
+                            <td>{{ job.recruiter }}</td>
+                            <td>{{job.agency }}</td>
+                          </tr>
+                            {% endfor %}
+                        </tbody>
+                      </table>
+                </div>
+                  <a href="{% url 'jobs' %}" class="btn btn-block btn-light">View all</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

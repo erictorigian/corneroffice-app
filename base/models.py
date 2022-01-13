@@ -1,3 +1,4 @@
+from platform import mac_ver
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -55,3 +56,22 @@ class Teacher(models.Model):
 
     def __str__(self):
         return self.first_name + " " + self.last_name
+
+
+class Job(models.Model):
+    role = models.CharField(max_length=100)
+    company = models.CharField(max_length=100)
+    location = models.CharField(max_length=100)
+    recruiter = models.CharField(max_length=100)
+    agency = models.CharField(max_length=100)
+    applied = models.BooleanField()
+    comments = models.TextField()
+    updated = models.DateTimeField(auto_now=True)
+    created =  models.DateTimeField(auto_now_add=True)
+    
+    class Meta: 
+        ordering = ['-updated', '-created']
+    
+    def __str__(self):
+        return self.role + " " + self.company + " (" + self.location + ")"
+
